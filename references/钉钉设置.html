@@ -1,0 +1,257 @@
+<!doctype html>
+<html class="dark" lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>ChatLink 钉钉设置</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              'macos-sidebar': 'rgba(40, 40, 40, 0.7)',
+              'macos-bg': '#1e1e1e',
+              'macos-card': '#2d2d2d',
+              primary: '#0A84FF',
+              success: '#30D158',
+              danger: '#FF453A',
+              warning: '#FF9F0A',
+              'secondary-text': '#98989D'
+            },
+            fontFamily: {
+              display: [
+                'Inter',
+                '-apple-system',
+                'BlinkMacSystemFont',
+                'Segoe UI',
+                'Roboto',
+                'Helvetica Neue',
+                'Arial',
+                'sans-serif'
+              ]
+            }
+          }
+        }
+      }
+    </script>
+    <style type="text/tailwindcss">
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 4px;
+      }
+      .glass-sidebar {
+        background: rgba(40, 40, 40, 0.6);
+        backdrop-filter: blur(40px);
+        -webkit-backdrop-filter: blur(40px);
+        border-right: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .title-bar-drag {
+        -webkit-app-region: drag;
+      }
+      input:focus,
+      select:focus {
+        outline: none !important;
+        --tw-ring-color: #0a84ff !important;
+        border-color: #0a84ff !important;
+      }
+    </style>
+    <style>
+      body {
+        min-height: max(884px, 100dvh);
+      }
+    </style>
+  </head>
+  <body
+    class="bg-black font-display text-white overflow-hidden h-screen w-screen flex selection:bg-primary/40 selection:text-white"
+  >
+    <aside class="w-[240px] flex-shrink-0 glass-sidebar flex flex-col h-full relative z-20">
+      <div class="h-[52px] flex items-center px-4 gap-2 title-bar-drag select-none">
+        <div class="w-3.5 h-3.5 rounded-full bg-[#FF5F57] border border-black/10"></div>
+        <div class="w-3.5 h-3.5 rounded-full bg-[#FEBC2E] border border-black/10"></div>
+        <div class="w-3.5 h-3.5 rounded-full bg-[#28C840] border border-black/10"></div>
+      </div>
+      <nav class="flex-1 px-3 py-2 space-y-1 overflow-y-auto">
+        <div class="mb-4 px-3">
+          <p class="text-[11px] font-bold text-secondary-text uppercase tracking-widest opacity-60">
+            ChatLink
+          </p>
+        </div>
+        <a
+          class="flex items-center gap-3 px-3 py-2 rounded-lg text-secondary-text hover:bg-white/5 hover:text-white transition-all group"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px]">dashboard</span>
+          <span class="text-[13px] font-medium">仪表盘</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-3 py-2 rounded-lg text-secondary-text hover:bg-white/5 hover:text-white transition-all group"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px]">description</span>
+          <span class="text-[13px] font-medium">转发日志</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary text-white shadow-sm transition-all group"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px] filled">send</span>
+          <span class="text-[13px] font-medium">钉钉设置</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-3 py-2 rounded-lg text-secondary-text hover:bg-white/5 hover:text-white transition-all group"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px]">settings</span>
+          <span class="text-[13px] font-medium">系统设置</span>
+        </a>
+      </nav>
+      <div class="p-4 border-t border-white/5">
+        <div class="flex items-center gap-3">
+          <div
+            class="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-xs font-bold shadow-inner"
+          >
+            CL
+          </div>
+          <div class="flex flex-col">
+            <span class="text-[12px] font-medium text-white">ChatLink Pro</span>
+            <span class="text-[10px] text-secondary-text">v2.4.0 (Build 302)</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <main class="flex-1 flex flex-col h-full min-w-0 bg-macos-bg relative">
+      <header
+        class="h-[52px] border-b border-white/5 bg-macos-bg/50 backdrop-blur-md flex items-center justify-between px-6 shrink-0 z-10"
+      >
+        <h1 class="font-bold text-base text-white tracking-tight">钉钉设置</h1>
+        <div class="flex items-center gap-2">
+          <span
+            class="text-[11px] font-medium text-secondary-text bg-white/5 px-2 py-1 rounded border border-white/5"
+            >机器人配置</span
+          >
+        </div>
+      </header>
+      <div class="flex-1 overflow-y-auto p-6 md:p-10">
+        <div class="max-w-2xl mx-auto">
+          <div class="space-y-8">
+            <section class="space-y-4">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="material-symbols-outlined text-primary text-lg">robot_2</span>
+                <h3 class="text-sm font-semibold text-white">Webhook 配置</h3>
+              </div>
+              <div class="space-y-4 bg-macos-card/50 p-6 rounded-2xl border border-white/5">
+                <div class="space-y-2">
+                  <label class="text-[13px] font-medium text-secondary-text ml-1"
+                    >Webhook 地址</label
+                  >
+                  <input
+                    class="w-full bg-black/40 border-white/10 rounded-lg py-2 px-3 text-[13px] text-white placeholder:text-white/20 focus:border-primary transition-all"
+                    placeholder="https://oapi.dingtalk.com/robot/send?access_token=..."
+                    type="text"
+                  />
+                  <p class="text-[11px] text-secondary-text/60 ml-1">
+                    在钉钉群设置中添加“自定义机器人”获取该链接
+                  </p>
+                </div>
+                <div class="space-y-2">
+                  <label class="text-[13px] font-medium text-secondary-text ml-1"
+                    >安全密钥 (Secret)</label
+                  >
+                  <input
+                    class="w-full bg-black/40 border-white/10 rounded-lg py-2 px-3 text-[13px] text-white placeholder:text-white/20 focus:border-primary transition-all"
+                    placeholder="SEC..."
+                    type="password"
+                  />
+                  <p class="text-[11px] text-secondary-text/60 ml-1">
+                    机器人安全设置中勾选“加签”并复制密钥
+                  </p>
+                </div>
+              </div>
+            </section>
+            <section class="space-y-4">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="material-symbols-outlined text-primary text-lg">tune</span>
+                <h3 class="text-sm font-semibold text-white">转发规则</h3>
+              </div>
+              <div
+                class="bg-macos-card/50 p-1 rounded-2xl border border-white/5 divide-y divide-white/5"
+              >
+                <div class="flex items-center justify-between p-4 px-5">
+                  <div class="flex flex-col">
+                    <span class="text-[13px] font-medium text-white">启用转发</span>
+                    <span class="text-[11px] text-secondary-text"
+                      >开启后 iMessage 将自动同步至钉钉</span
+                    >
+                  </div>
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input checked="" class="sr-only peer" type="checkbox" />
+                    <div
+                      class="w-10 h-5.5 bg-white/10 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-[18px] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-[18px] after:w-[18px] after:transition-all peer-checked:bg-success shadow-inner"
+                    ></div>
+                  </label>
+                </div>
+                <div class="flex items-center justify-between p-4 px-5">
+                  <div class="flex flex-col">
+                    <span class="text-[13px] font-medium text-white">静默模式</span>
+                    <span class="text-[11px] text-secondary-text"
+                      >转发消息时不触发钉钉手机端弹窗通知</span
+                    >
+                  </div>
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input class="sr-only peer" type="checkbox" />
+                    <div
+                      class="w-10 h-5.5 bg-white/10 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-[18px] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-[18px] after:w-[18px] after:transition-all peer-checked:bg-success shadow-inner"
+                    ></div>
+                  </label>
+                </div>
+                <div class="flex items-center justify-between p-4 px-5">
+                  <div class="flex flex-col">
+                    <span class="text-[13px] font-medium text-white">转发规则</span>
+                    <span class="text-[11px] text-secondary-text">根据发送者或内容进行过滤</span>
+                  </div>
+                  <select
+                    class="bg-white/5 border-white/10 rounded-md text-[12px] py-1 pl-3 pr-8 text-white min-w-[120px]"
+                  >
+                    <option value="all">转发所有消息</option>
+                    <option value="filtered">仅转发验证码</option>
+                    <option value="contacts">仅转发联系人</option>
+                  </select>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div class="mt-12 flex items-center justify-between gap-4 pt-6 border-t border-white/5">
+            <button
+              class="flex items-center gap-2 px-6 py-2.5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all text-sm font-medium text-white"
+            >
+              <span class="material-symbols-outlined text-lg">bolt</span>
+              测试连接
+            </button>
+            <button
+              class="flex items-center gap-2 px-10 py-2.5 rounded-xl bg-primary hover:bg-primary/90 transition-all text-sm font-bold text-white shadow-lg shadow-primary/20"
+            >
+              保存设置
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

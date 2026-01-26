@@ -1,0 +1,51 @@
+{
+  "name": "chat-link",
+  "productName": "ChatLink",
+  "version": "1.0.0",
+  "description": "Forward iPhone SMS to DingTalk via macOS iMessage Sync",
+  "main": "./out/main/index.js",
+  "author": "ChatLink Team",
+  "homepage": "https://github.com/dinghz/chat-link",
+  "scripts": {
+    "format": "prettier --write .",
+    "lint": "eslint --cache .",
+    "start": "electron-vite preview",
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "postinstall": "electron-builder install-app-deps",
+    "build:unpack": "npm run build && electron-builder --dir",
+    "build:win": "npm run build && electron-builder --win",
+    "build:mac": "npm run build && electron-builder --mac",
+    "build:linux": "npm run build && electron-builder --linux"
+  },
+  "dependencies": {
+    "@electron-toolkit/preload": "^3.0.2",
+    "@electron-toolkit/utils": "^4.0.0",
+    "@fontsource/inter": "^5.2.8",
+    "@fontsource/material-symbols-outlined": "^5.2.32",
+    "better-sqlite3": "^12.6.2",
+    "clsx": "^2.1.1",
+    "electron-store": "^11.0.2",
+    "react-router-dom": "^7.12.0",
+    "tailwind-merge": "^3.4.0"
+  },
+  "devDependencies": {
+    "@electron-toolkit/eslint-config": "^2.1.0",
+    "@electron-toolkit/eslint-config-prettier": "^3.0.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.23",
+    "electron": "^39.2.6",
+    "electron-builder": "^25.1.8",
+    "electron-vite": "^2.3.0",
+    "eslint": "^9.39.1",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.4.24",
+    "postcss": "^8.5.6",
+    "prettier": "^3.7.4",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "tailwindcss": "^3.4.19",
+    "vite": "^5.4.11"
+  }
+}
