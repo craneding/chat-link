@@ -135,10 +135,12 @@ export class ForwardingService {
       second: '2-digit'
     })
 
+    const title = this.generateTitle(msg.sender, msg.text)
+
     const payload = {
       msgtype: 'markdown',
       markdown: {
-        title: '收到新短信',
+        title,
         text:
           `### 📩 新消息 (ChatLink)\n\n` +
           `**发件人**: ${msg.sender}\n\n` +
@@ -215,6 +217,83 @@ export class ForwardingService {
     }
 
     this.store.set('history', history)
+  }
+
+  /**
+   * Generate a smart title based on SMS content for push notification.
+   * Extracts key info (verification codes, amounts, etc.) so users can
+   * quickly see what matters in the notification bar.
+   */
+  generateTitle(sender, text) {
+    if (!text) return `💬 ${sender}: 新消息`
+
+    // 1. Verification code - highest priority
+    const codeMatch =
+      text.match(/(?:验证码|校验码|确认码|动态码|安全码|短信码)[^\d]*(\d{4,8})/i) ||
+      text.match(/(?:code|verify|verification)[^\d]*(\d{4,8})/i) ||
+      text.match(/(\d{4,8})[^\d]*(?:验证码|校验码|确认码|动态码|安全码|短信码)/i)
+    if (codeMatch) {
+      return `🔑 验证码: ${codeMatch[1]}`
+    }
+
+    // 2. Express / delivery
+    if (
+      /快递|快件|包裹|签收|取件|驿站|菜鸟|丰巢|中通|圆通|韵达|申通|顺丰|京东物流|极兔/.test(text)
+    ) {
+      const summary = text
+        .replace(/【[^】]*】/g, '')
+        .trim()
+        .slice(0, 15)
+      return `📦 快递: ${summary}`
+    }
+
+    // 3. Payment / bank transaction (extract amount)
+    const amountMatch = text.match(
+      /(?:支出|消费|扣款|付款|交易|刷卡|转出)[^\d]*(\d+[.,]?\d*)\s*元/i
+    )
+    if (amountMatch) {
+      return `💰 支出: ${amountMatch[1]}元`
+    }
+    const incomeMatch = text.match(/(?:收入|到账|入账|转入|收款)[^\d]*(\d+[.,]?\d*)\s*元/i)
+    if (incomeMatch) {
+      return `💰 到账: ${incomeMatch[1]}元`
+    }
+
+    // 4. Repayment / bill reminder
+    if (/还款|账单|逾期|信用卡|花呗|借呗|白条/.test(text)) {
+      const billAmount = text.match(/(\d+[.,]?\d*)\s*元/)
+      return billAmount ? `📋 账单: ${billAmount[1]}元` : `📋 账单提醒`
+    }
+
+    // 5. Recharge
+    if (/充值|缴费|续费/.test(text)) {
+      return `🔋 充值通知`
+    }
+
+    // 6. Overdue / arrears
+    if (/欠费|余额不足|停机/.test(text)) {
+      return `⚠️ 欠费提醒`
+    }
+
+    // 7. Travel notifications
+    if (/航班|机票|登机|值机/.test(text)) {
+      const flightMatch = text.match(/([A-Z\d]{2}\d{3,4})/)
+      return flightMatch ? `✈️ 航班: ${flightMatch[1]}` : `✈️ 航班通知`
+    }
+    if (/火车|高铁|列车|车票|12306/.test(text)) {
+      return `🚄 火车票通知`
+    }
+    if (/打车|出行|滴滴|网约车|行程/.test(text)) {
+      return `🚗 出行通知`
+    }
+
+    // 8. Fallback: sender + content summary
+    const cleanText = text
+      .replace(/【[^】]*】/g, '')
+      .replace(/\s+/g, ' ')
+      .trim()
+    const summary = cleanText.length > 15 ? cleanText.slice(0, 15) + '…' : cleanText
+    return `💬 ${sender}: ${summary}`
   }
 
   getHistory() {
